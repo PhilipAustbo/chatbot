@@ -1,4 +1,4 @@
-// api/ask.js (Secure Vercel serverless function)
+// api/ask.js
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
@@ -11,10 +11,6 @@ export default async function handler(req, res) {
   }
 
   const { contents } = req.body;
-
-  if (!Array.isArray(contents) || contents.length === 0) {
-    return res.status(400).json({ error: 'Invalid request body' });
-  }
 
   try {
     const geminiResponse = await fetch(
